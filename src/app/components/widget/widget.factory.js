@@ -646,6 +646,112 @@
           });
         }
 
+        definitions.push(
+            {
+                name: 'nvidia.memused',
+                title: 'GPU Memory usage (GB)',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: ConvertedMetricDataModel,
+                dataModelOptions: {
+                    name: 'nvidia.memused',
+                    conversionFunction: function (value) {
+                        return value / 1024 / 1024 / 1024;
+                    }
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'GPU'
+            },
+            {
+                name: 'nvidia.temp',
+                title: 'GPU Temperature',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MetricDataModel,
+                dataModelOptions: {
+                    name: 'nvidia.temp'
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'GPU',
+                attrs: {
+                    forcey: 120,
+                    integer: true
+                }
+            },
+            {
+                name: 'nvidia.gpuactive',
+                title: 'Fraction of time GPU is running a kernel',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MetricDataModel,
+                dataModelOptions: {
+                    name: 'nvidia.gpuactive'
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'GPU',
+                attrs: {
+                    forcey: 100,
+                    percentage: false,
+                    integer: true
+                }
+            },
+            {
+                name: 'nvidia.memactive',
+                title: 'Fraction of time GPU global mem active',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MetricDataModel,
+                dataModelOptions: {
+                    name: 'nvidia.memactive'
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'GPU',
+                attrs: {
+                    forcey: 100,
+                    percentage: false,
+                    integer: true
+                }
+            }, {
+                name: 'nvidia.perfstate',
+                title: 'GPU P-state',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MetricDataModel,
+                dataModelOptions: {
+                    name: 'nvidia.perfstate'
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'GPU',
+                attrs: {
+                    forcey: 15,
+                    percentage: false,
+                    integer: true
+                }
+            }
+
+
+        );
+
         if (config.enableContainerWidgets) {
             definitions.push(
                 {
