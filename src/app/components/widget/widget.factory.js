@@ -491,7 +491,7 @@
                 group: 'Disk'
             }, {
                 name: 'disk.dev.avactive',
-                title: 'Disk Utilization',
+                title: 'Disk Active',
                 directive: 'line-time-series',
                 dataAttrName: 'data',
                 dataModelType: CumulativeUtilizationMetricDataModel,
@@ -688,7 +688,7 @@
             },
             {
                 name: 'nvidia.gpuactive',
-                title: 'Fraction of time GPU is running a kernel',
+                title: 'GPU Kernel Active',
                 directive: 'line-time-series',
                 dataAttrName: 'data',
                 dataModelType: MetricDataModel,
@@ -709,7 +709,7 @@
             },
             {
                 name: 'nvidia.memactive',
-                title: 'Fraction of time GPU global mem active',
+                title: 'GPU Global Mem Active',
                 directive: 'line-time-series',
                 dataAttrName: 'data',
                 dataModelType: MetricDataModel,
@@ -1019,7 +1019,6 @@
                         area: false
                     }
                 }
-
             );
 
         }
@@ -1039,47 +1038,23 @@
                 width: '50%'
             }
         }, {
-            name: 'kernel.all.runnable',
+            name: 'nvidia.gpuactive',
             size: {
                 width: '50%'
             }
         }, {
-            name: 'kernel.all.load',
+            name: 'nvidia.memused',
             size: {
                 width: '50%'
             }
-        }, {
-            name: 'network.interface.bytes',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'network.tcpconn',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'network.interface.packets',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'network.tcp.retrans',
-            size: {
-                width: '50%'
-            }
-        }, {
+        },
+        {
             name: 'mem',
             size: {
                 width: '50%'
             }
         }, {
             name: 'mem.vmstat.pgfault',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'kernel.all.pswitch',
             size: {
                 width: '50%'
             }
@@ -1100,6 +1075,26 @@
             }
         }, {
             name: 'disk.dev.latency',
+            size: {
+                width: '50%'
+            }
+        }, {
+            name: 'network.interface.bytes',
+            size: {
+                width: '50%'
+            }
+        }, {
+            name: 'network.tcpconn',
+            size: {
+                width: '50%'
+            }
+        }, {
+            name: 'network.interface.packets',
+            size: {
+                width: '50%'
+            }
+        }, {
+            name: 'network.tcp.retrans',
             size: {
                 width: '50%'
             }
