@@ -472,7 +472,7 @@
                 group: 'Disk'
             }, {
                 name: 'disk.bytes',
-                title: 'Disk Throughput (Bytes)',
+                title: 'Disk Throughput (KB)',
                 directive: 'line-time-series',
                 dataAttrName: 'data',
                 dataModelType: MultipleCumulativeMetricDataModel,
@@ -611,7 +611,7 @@
                 }
             }, {
                 name: 'disk.dev.latency',
-                title: 'Disk Latency',
+                title: 'Disk Latency (ms)',
                 directive: 'line-time-series',
                 dataAttrName: 'data',
                 dataModelType: DiskLatencyMetricDataModel,
@@ -649,14 +649,14 @@
         definitions.push(
             {
                 name: 'nvidia.memused',
-                title: 'GPU Memory usage (GB)',
+                title: 'GPU Memory usage (MB)',
                 directive: 'line-time-series',
                 dataAttrName: 'data',
                 dataModelType: ConvertedMetricDataModel,
                 dataModelOptions: {
                     name: 'nvidia.memused',
                     conversionFunction: function (value) {
-                        return value / 1024 / 1024 / 1024;
+                        return value / 1024 / 1024;
                     }
                 },
                 size: {
@@ -664,7 +664,11 @@
                     height: '250px'
                 },
                 enableVerticalResize: false,
-                group: 'GPU'
+                group: 'GPU',
+                attrs : {
+                    percentage: false,
+                    integer: false
+                }
             },
             {
                 name: 'nvidia.temp',
@@ -750,6 +754,49 @@
             }
 
 
+        );
+
+        definitions.push(
+            {
+                name: 'filesys.avail',
+                title: 'File System space available (GB)',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: ConvertedMetricDataModel,
+                dataModelOptions: {
+                    name: 'filesys.avail',
+                    conversionFunction: function (value) {
+                        return value / 1024 / 1024;
+                    }
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'File System'
+            },
+            {
+                name: 'filesys.full',
+                title: 'File System space utilization',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MetricDataModel,
+                dataModelOptions: {
+                    name: 'filesys.full'
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'File System',
+                attrs: {
+                    forcey: 100,
+                    percentage: false,
+                    integer: false
+                }
+            }
         );
 
         if (config.enableContainerWidgets) {
@@ -1054,11 +1101,6 @@
                 width: '50%'
             }
         }, {
-            name: 'mem.vmstat.pgfault',
-            size: {
-                width: '50%'
-            }
-        }, {
             name: 'disk.iops',
             size: {
                 width: '50%'
@@ -1084,17 +1126,28 @@
                 width: '50%'
             }
         }, {
-            name: 'network.tcpconn',
-            size: {
-                width: '50%'
-            }
-        }, {
             name: 'network.interface.packets',
             size: {
                 width: '50%'
             }
         }, {
+            name: 'network.tcpconn',
+            size: {
+                width: '50%'
+            }
+        },
+        {
             name: 'network.tcp.retrans',
+            size: {
+                width: '50%'
+            }
+        }, {
+            name: 'filesys.avail',
+            size: {
+                width: '50%'
+            }
+        }, {
+            name: 'filesys.full',
             size: {
                 width: '50%'
             }

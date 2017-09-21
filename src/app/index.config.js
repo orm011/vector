@@ -36,7 +36,7 @@
             'protocol': 'http', // PMWEBD protocol (http or https)
             'port': 44323,  // PMWEBD port
             'hostspec': 'localhost', // Default PMCD hostspec
-            'interval': '2', // Default update interval in seconds
+            'interval': '5', // Default update interval in seconds
             'window': '10', // Default graph time window in minutes
             'enableCpuFlameGraph': false, // Enable CPU flame graph (requires extra PMDA)
             'enableContainerWidgets': true, // Enable container widgets
